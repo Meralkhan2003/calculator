@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button class="btn gray" onclick="clearDisplay()">AC</button>
+            <button class="btn gray" onclick="deleteLast()">DEL</button>
+            <button class="btn gray" onclick="append('%')">%</button>
+            <button class="btn orange" onclick="append('/')">/</button>
+
+            <button class="btn dark" onclick="append('7')">7</button>
+            <button class="btn dark" onclick="append('8')">8</button>
+            <button class="btn dark" onclick="append('9')">9</button>
+            <button class="btn orange" onclick="append('*')">*</button>
+
+            <button class="btn dark" onclick="append('4')">4</button>
+            <button class="btn dark" onclick="append('5')">5</button>
+            <button class="btn dark" onclick="append('6')">6</button>
+            <button class="btn orange" onclick="append('-')">-</button>
+
+            <button class="btn dark" onclick="append('1')">1</button>
+            <button class="btn dark" onclick="append('2')">2</button>
+            <button class="btn dark" onclick="append('3')">3</button>
+            <button class="btn orange" onclick="append('+')">+</button>
+
+            <button class="btn wide dark" onclick="append('0')">0</button>
+            <button class="btn dark" onclick="append('.')">.</button>
+            <button class="btn orange" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+
+        function append(char) {
+            if (display.innerText === '0') {
+                display.innerText = char;
+            } else {
+                display.innerText += char;
+            }
+        }
+
+        function clearDisplay() {
+            display.innerText = '0';
+        }
+
+        function deleteLast() {
+            display.innerText = display.innerText.slice(0, -1) || '0';
+        }
+
+        function calculate() {
+            try {
+                display.innerText = eval(display.innerText.replace('%', '/100'));
+            } catch {
+                display.innerText = 'Error';
+            }
+        }
+    </script>
+</body>
+
+</html>
